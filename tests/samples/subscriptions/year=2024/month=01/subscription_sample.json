@@ -1,0 +1,102 @@
+{
+    "id": "test_event_01",
+    "timestamp": "2024-01-02T00:08:33.43Z",
+    "event": "cycle-renewed",
+    "publisher": "api",
+    "issuer": "api",
+    "data": {
+        "user": {
+            "id": "test_user_01",
+            "createdAt": "2023-12-02T17:30:30Z",
+            "username": "test_user_01@example.edu",
+            "email": "test_user_01@example.edu",
+            "fullName": "JANE DOE SMITH",
+            "avatarUrl": "https://s.gravatar.com/avatar/00000000000000000000000000000000?size=80&d=retro&rating=g",
+            "registration": {
+                "country": "it"
+            },
+            "integrations": [],
+            "subscription": {
+                "id": "test_subscription_01",
+                "version": 1,
+                "categoryVariant": "free",
+                "category": "free",
+                "addonsEligible": false,
+                "createdAt": "2023-12-02T17:30:30Z",
+                "due": 0,
+                "billing": {
+                    "cycle": {
+                        "price": {
+                            "full": 0,
+                            "net": 0,
+                            "vat": 0
+                        },
+                        "resetsAt": "2024-01-02T17:30:30Z",
+                        "trial": {
+                            "expiresAt": null
+                        }
+                    },
+                    "addons": [],
+                    "extra": {
+                        "cycle": {}
+                    }
+                },
+                "plan": {
+                    "id": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9"
+                },
+                "external": {
+                    "id": null,
+                    "line": null
+                },
+                "status": {
+                    "renew": true,
+                    "suspend": false
+                },
+                "limits": {
+                    "domains": {
+                        "used": 0,
+                        "included": 1
+                    },
+                    "workspaces": {
+                        "used": 1,
+                        "included": 1
+                    },
+                    "cycle": {
+                        "links-classic": {
+                            "used": 4,
+                            "included": 10
+                        },
+                        "clicks": {
+                            "used": 13,
+                            "included": 100
+                        }
+                    },
+                    "tags": {
+                        "used": 0,
+                        "included": 1000
+                    },
+                    "scripts": {
+                        "used": 0,
+                        "included": 0
+                    },
+                    "apps": {
+                        "used": 0,
+                        "included": 0
+                    }
+                }
+            },
+            "clicks": 0
+        },
+        "cycle": {
+            "createdAt": "2023-12-02T17:30:30Z",
+            "expiredAt": "2024-01-02T17:30:30Z",
+            "quota": {
+                "permanent": {},
+                "disposable": {}
+            },
+            "due": {
+                "net": 0
+            }
+        }
+    }
+}
