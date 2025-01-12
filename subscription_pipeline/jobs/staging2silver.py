@@ -2,10 +2,13 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
 from subscription_pipeline.date_check import validate_month_format
+from subscription_pipeline.jobs.abstract_job import AbstractJob
 
 
-class SubscriptionStagingToSilver():
-
+class SubscriptionStagingToSilver(AbstractJob):
+    """
+    This Job extract data from the raw layer and create the silver table `subscription.subscription_event`
+    """
     def __init__(
         self,
         spark: SparkSession,
@@ -13,17 +16,14 @@ class SubscriptionStagingToSilver():
         root_output_path: str,
         env: str,
     ):
-        self.spark = spark
+        super().__init__(spark, env, "SUBSCRIPTION - STAGING TO SILVER")
         self.staging_path = staging_path
         self.root_output_path = root_output_path
-        self.env = env
 
-    def run(self, from_month: str, to_month: str): 
-        
+
+    def _run(self, from_month: str, to_month: str): 
         self._validate_input(from_month, to_month)
-        
         df = self._compute_df(from_month, to_month)
-        
         self._write_df(df, from_month, to_month)
         
     
@@ -68,7 +68,6 @@ class SubscriptionStagingToSilver():
         
         # df = check_DQ_rules()
         return df
-        
 
     def _write_df(self, df, from_month: str, to_month: str):
         # we don't expect too many records here so, we don't apply partitiong
@@ -82,5 +81,4 @@ class SubscriptionStagingToSilver():
                 path=f"{self.root_output_path}/subscription_events/"
             )
         )
-        
-        
+

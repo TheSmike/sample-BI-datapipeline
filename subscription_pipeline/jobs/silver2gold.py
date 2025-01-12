@@ -3,11 +3,12 @@ from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql import functions as F
 
 from subscription_pipeline.date_check import validate_month_format
+from subscription_pipeline.jobs.abstract_job import AbstractJob
 
 
-class SubscriptionSilver2Gold():
+class SubscriptionSilver2Gold(AbstractJob):
     """
-    This Job extract data from `subscription.subscription_event` and create 3 new tables:
+    This Job extract data from the silver table `subscription.subscription_event` and create 3 new business tables:
     - subscription_monthly_status (fact)
     - subscription (dim) 
     - customer (dim)
@@ -20,12 +21,11 @@ class SubscriptionSilver2Gold():
         root_output_path: str,
         # we could parametrize also output table names
     ):
-        self.spark = spark
-        self.env = env
+        super().__init__(spark, env, "SUBSCRIPTION - SILVER TO GOLD")
         self.root_output_path = root_output_path
         
         
-    def run(self, from_month: str, to_month: str):
+    def _run(self, from_month: str, to_month: str):
         
         self._validate_input(from_month, to_month)
         
